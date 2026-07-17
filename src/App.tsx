@@ -6,9 +6,21 @@ import { decompressCompactToConfig } from './utils';
 
 export default function App() {
   const [urlSharedData, setUrlSharedData] = useState<any | null>(null);
+  const [githubRepoUrl, setGithubRepoUrl] = useState<string | null>(null);
   
-  // マウント時に URLのハッシュを評価
+  // マウント時に URLのハッシュを評価、およびGitHub Pages判定
   useEffect(() => {
+    // GitHub Pagesの検出とリポジトリURL動的生成
+    const hostname = window.location.hostname;
+    if (hostname.endsWith('github.io')) {
+      const username = hostname.split('.')[0];
+      const pathParts = window.location.pathname.split('/').filter(Boolean);
+      const repoName = pathParts[0] || 'ratio_wakikan';
+      if (username && repoName) {
+        setGithubRepoUrl(`https://github.com/${username}/${repoName}`);
+      }
+    }
+
     const base64ToUtf8 = (str: string): string => {
       // URL-safe文字を標準的なBase64文字に正規化
       let normalized = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -141,6 +153,18 @@ export default function App() {
         <p className="text-[10px] text-slate-400 font-medium">
           Ⓒ2026 Ratio割り勘ツール
         </p>
+        {githubRepoUrl && (
+          <p className="text-[10px] text-slate-400/80 font-medium animate-fade-in">
+            <a
+              href={githubRepoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-600 underline transition-colors"
+            >
+              GitHub Repository
+            </a>
+          </p>
+        )}
       </footer>
     </div>
   );
