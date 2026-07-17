@@ -1,0 +1,6 @@
+{
+  "name": "Ratio割り勘ツール",
+  "description": "傾斜（Ratio）・固定額・無料のグループが混在した精算まで対応した、割り勘計算を簡単にできます。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
