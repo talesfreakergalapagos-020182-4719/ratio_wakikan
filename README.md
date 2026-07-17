@@ -1,20 +1,74 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Ratio 割り勘ツール
 
-# Run and deploy your AI Studio app
+任意の傾斜（比率）を指定して合計金額を複数人でスマートに傾斜配分・割り勘できる、レスポンシブなWebアプリケーションです。
 
-This contains everything you need to run your app locally.
+## 🌟 アプリケーションの概要
 
-View your app in AI Studio: https://ai.studio/apps/857cfbf8-ed0e-4c6f-b82c-aff23d43c3fb
+「Ratio 割り勘ツール」は、通常の均等割り勘に留まらず、参加者それぞれの負担割合（比率）を自由に傾斜させて、端数処理も含めてきれいに割り勘を計算することができるツールです。
 
-## Run Locally
+### 主な特徴
+- **自由な比率（Ratio）割り勘**: 「多めに払う人」や「少なく払う人」などの負担割合をバーや数値入力でフレキシブルに調整可能。
+- **URL共有機能**: 計算された割り勘データは、LZ-String圧縮技術を用いてURL（ハッシュ）として保存されます。これにより、リンクを送るだけでいつでも同じ割り勘状態を他の人に共有・復元可能です。
+- **プライバシー重視・ローカル完結**: 計算処理や共有用ハッシュの解析はすべてブラウザ上で安全にローカル実行され、外部サーバーに計算情報を送信することはありません。
+- **モダンで美しいUI**: インタラクティブで滑らかなアニメーション（framer-motion）と、Tailwind CSSによる美しいミニマルデザインを採用。
 
-**Prerequisites:**  Node.js
+---
 
+## 🛠️ ビルドと実行方法
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+本プロジェクトは、**React**, **TypeScript**, **Vite**, **Tailwind CSS** をベースに構築されています。
+
+### 前提条件
+ローカル環境に以下のランタイムがインストールされていることを確認してください：
+- **Node.js** (推奨バージョン: 22 / 24 以降)
+- **npm** または **bun** などのパッケージマネージャー
+
+---
+
+### 1. 依存関係のインストール
+
+プロジェクトのルートディレクトリで、依存関係をダウンロードします：
+
+```bash
+npm install
+# もしくは Bun を使用している場合:
+bun install
+```
+
+---
+
+### 2. ローカル開発サーバーの起動
+
+開発環境でアプリケーションを立ち上げ、リアルタイムでプレビューを確認します：
+
+```bash
+npm run dev
+# もしくは
+bun run dev
+```
+
+起動後、コンソールに表示されるアドレス（デフォルトは `http://localhost:3000` または `http://localhost:5173`）にブラウザからアクセスします。
+
+---
+
+### 3. 本番用ビルド（静的ファイルの作成）
+
+GitHub Pagesやその他のホスティングサービスで公開するために、最適化された静的アセットをビルド（コンパイル）します：
+
+```bash
+npm run build
+# もしくは
+bun run build
+```
+
+ビルドが完了すると、ルート直下に **`dist`** ディレクトリが生成され、その中に公開用の `index.html` や `assets`（CSS/JS）などの静的ファイル群が配置されます。
+
+---
+
+### 4. GitHub Pages への自動デプロイ
+
+本リポジトリには、GitHub Actionsを用いた自動デプロイ用ワークフローが `.github/workflows/deploy.yml` に含まれています。
+
+1. 本リポジトリを GitHub へプッシュ（`main` または `master` ブランチ）します。
+2. リポジトリの **Settings > Pages** にて、Sourceを **GitHub Actions** に設定します。
+3. プッシュが発生すると自動的にワークフローがトリガーされ、ビルド成果物（`dist` ディレクトリの内容）が自動的に GitHub Pages にホスティング・公開されます。
