@@ -102,14 +102,20 @@ export default function App() {
       {/* ヘッダー / ナビゲーション */}
       <header className="bg-white border-b border-slate-100 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center relative select-none">
-              <span className="text-white font-mono font-black text-base italic leading-none translate-x-[-0.5px]">R</span>
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center relative select-none">
+                <span className="text-white font-mono font-black text-base italic leading-none translate-x-[-0.5px]">R</span>
+              </div>
+              <div>
+                <h1 id="main-app-title" className="text-xl font-bold tracking-tight text-slate-950 flex items-center gap-1.5 leading-none animate-fade-in">
+                  Ratio割り勘ツール
+                </h1>
+              </div>
             </div>
-            <div>
-              <h1 id="main-app-title" className="text-xl font-bold tracking-tight text-slate-950 flex items-center gap-1.5 leading-none animate-fade-in">
-                Ratio割り勘ツール
-              </h1>
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 text-[11px] font-semibold rounded-full border border-emerald-100/80 shadow-3xs select-none">
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+              <span>100% ローカル処理 (外部送信なし)</span>
             </div>
           </div>
         </div>
@@ -146,9 +152,15 @@ export default function App() {
       </main>
 
       {/* 一部文言調整 */}
-      <footer className="p-12 bg-white text-center border-t border-slate-100 mt-16 space-y-2">
+      <footer className="p-12 bg-white text-center border-t border-slate-100 mt-16 space-y-3">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 text-slate-500 text-[10px] font-medium rounded-md border border-slate-100 select-none">
+          <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span>プライバシー保護: 計算データやURL、割り勘情報はサーバーへ一切送信されません</span>
+        </div>
         <p className="text-xs text-slate-600 font-semibold whitespace-normal leading-relaxed">
-          ※ すべての計算はブラウザ上で安全かつローカルに実行されます。万が一、計算結果に誤り等があっても一切の責任を負いかねますのでご了承ください。
+          ※ すべての計算およびURLでのデータ復元はブラウザ上で100%ローカル実行されます。万が一、計算結果に誤り等があっても一切の責任を負いかねますのでご了承ください。
         </p>
         <p className="text-[10px] text-slate-400 font-medium">
           Ⓒ2026 Ratio割り勘ツール
